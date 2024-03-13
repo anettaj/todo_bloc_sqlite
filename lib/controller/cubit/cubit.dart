@@ -15,7 +15,7 @@ class TodoCubit extends Cubit<TodoStates> {
         print('The database is created');
         database.execute(
             'CREATE TABLE tasks'
-                '(id INTEGER PRIMARY KEY,title TEXT,date TEXT,time TEXT)')
+                '(id INTEGER PRIMARY KEY,title TEXT,date TEXT,time TEXT,description TEXT,status TEXT)')
             .then((value) {
           print('table is created');
         })
@@ -35,6 +35,30 @@ class TodoCubit extends Cubit<TodoStates> {
 
     });
   }
+
+  void insertToDatabase({
+      required title,
+      required date,
+      required time,
+      required description,
+    String status='new'
+    })
+    {
+      database?.transaction((txn) async {
+      txn
+          .rawInsert(
+          'INSERT INTO tasks'
+          '(title,date,time,description,status) VALUES'
+          '("$title","$date","$time","$description","$status")')
+          .then((value) {
+            print('$value');
+            emit(InsertingIntoTodoDatabaseState());
+      })
+          .catchError((error){
+        print('error in inserting into the database');
+      });
+    });
+    }
 
 
 }
