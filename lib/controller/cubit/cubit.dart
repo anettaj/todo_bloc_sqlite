@@ -29,7 +29,7 @@ class TodoCubit extends Cubit<TodoStates> {
       
     ).then((value) {
       database=value;
-      emit(CreateTodoDatabaseState());
+      emit(SuccessCreateTodoDatabaseState());
     }).catchError((error){
       print('error in opening the file');
 
@@ -52,7 +52,7 @@ class TodoCubit extends Cubit<TodoStates> {
           '("$title","$date","$time","$description","$status")')
           .then((value) {
             print('$value');
-            emit(InsertingIntoTodoDatabaseState());
+            emit(SuccessInsertingIntoTodoDatabaseState());
       })
           .catchError((error){
         print('error in inserting into the database');
@@ -60,5 +60,14 @@ class TodoCubit extends Cubit<TodoStates> {
     });
     }
 
+    void gettingDataFromDatabase(){
+      database!.rawQuery('SELECT * FROM tasks').then((value) {
+        print('data is appearing');
+        print(value);
+        emit(SuccessGettingDataFromDatabaseState());
+      }).catchError((error){
+        print('Error when getting the data ${error.toString()}');
+      });
+    }
 
 }
