@@ -59,9 +59,12 @@ class TodoCubit extends Cubit<TodoStates> {
       });
     });
     }
-
+  List tasks=[];
     void gettingDataFromDatabase(){
       database!.rawQuery('SELECT * FROM tasks').then((value) {
+        value.forEach((element){
+          tasks.add(element);
+        });
         print('data is appearing');
         print(value);
         emit(SuccessGettingDataFromDatabaseState());
