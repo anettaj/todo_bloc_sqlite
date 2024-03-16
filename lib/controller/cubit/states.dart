@@ -7,3 +7,5 @@ class SuccessCreateTodoDatabaseState extends TodoStates{}
 class SuccessInsertingIntoTodoDatabaseState extends TodoStates{}
 
 class SuccessGettingDataFromDatabaseState extends TodoStates{}
+
+class SuccessUpdateDataIntoDatabaseState extends TodoStates{}

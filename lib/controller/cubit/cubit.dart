@@ -72,5 +72,27 @@ class TodoCubit extends Cubit<TodoStates> {
         print('Error when getting the data ${error.toString()}');
       });
     }
-
+    void updateDataIntoDatabase(
+        {
+          required String title,
+          required String date,
+          required String time,
+          required String description,
+          required int id
+    })
+    {
+      database!.update('tasks', {
+        "title":title,
+        "date":date,
+        "time":time,
+        "description":description
+      },
+        where: 'id=?',
+        whereArgs:[id]).then((value){
+          print('$value updating data has successfully done');
+          getDatabasesPath();
+      }).catchError((error){
+        print('error when updating data');
+      });
+    }
 }
