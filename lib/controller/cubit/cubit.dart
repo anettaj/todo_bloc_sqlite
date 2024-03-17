@@ -95,4 +95,14 @@ class TodoCubit extends Cubit<TodoStates> {
         print('error when updating data');
       });
     }
+
+    void deleteDataFromDatabase({required int id}){
+      database!.rawDelete('DELETE FROM tasks WHERE id=?',[id])
+          .then((value){
+        print('$value deleting data has successfully done');
+        gettingDataFromDatabase();
+      }).catchError((error){
+        print('error when deleting data');
+      });
+    }
 }
