@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_bloc_sqlite/controller/cubit/cubit.dart';
 import 'package:todo_bloc_sqlite/controller/cubit/states.dart';
+import 'package:todo_bloc_sqlite/shared/Styles/themes.dart';
 import 'package:todo_bloc_sqlite/views/Test_home.dart';
 
 void main() {
@@ -20,11 +21,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        theme: lightTheme,
+        darkTheme: darkTheme,
         home: HomeScreeen()
       ),
     );
