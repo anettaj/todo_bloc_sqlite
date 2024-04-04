@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_bloc_sqlite/controller/cubit/cubit.dart';
 import 'package:todo_bloc_sqlite/controller/cubit/states.dart';
+import 'package:todo_bloc_sqlite/views/add_task_screen.dart';
 
 class HomeScreeen extends StatefulWidget {
   const HomeScreeen({super.key});
@@ -22,16 +23,15 @@ class _HomeScreeenState extends State<HomeScreeen> {
             body: Center(
               child: Column(
                 children: [
-                  IconButton(
-                      onPressed: (){
-                        cubit.createDatabase();
-                      },
-                      icon: Icon(
-                        Icons.add,
-                      )
-                  )
+
                 ],
               ),
+            ),
+            floatingActionButton: FloatingActionButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => AddTaskScreen(),));
+                },
+              child: Icon(Icons.add),
             ),
           );
         },
