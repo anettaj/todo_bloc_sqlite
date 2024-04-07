@@ -10,8 +10,12 @@ Widget CustomTextFormField({
   required String label,
   required String hintText,
   required IconData prefixIcon,
+  GestureTapCallback? onTap,
+  int?maxlines
 })=>
     TextFormField(
+      maxLines: maxlines,
+      onTap: onTap,
       controller: controller,
       keyboardType: keyboardType,
       onFieldSubmitted: submit,
